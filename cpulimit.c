@@ -1,7 +1,5 @@
 #include<stdio.h>
 #include<unistd.h>
-#include<string.h>
-#include<malloc.h>
 #include<stdlib.h>
 #include<signal.h>
 
@@ -31,7 +29,7 @@ void cpulimit(char* argv[]) {
 			for(;;) {
 				usleep(sleep_time);
 				kill(pid, SIGSTOP);
-				usleep(100000 - sleep_time);
+				usleep(1000000 - sleep_time);
 				kill(pid, SIGCONT);
 			}
 		}
@@ -39,7 +37,7 @@ void cpulimit(char* argv[]) {
 }
 
 int main(int argc, char* argv[]) {
-	if (argc < 2) {
+	if (argc < 3) {
 		fprintf(stderr, "Недостаточно аргументов");
 		return 1;
 	}
